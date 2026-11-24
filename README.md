@@ -68,7 +68,7 @@ The processor separates internal execution from external memory access using ded
 
 ```mermaid
 flowchart LR
-    subgraph Internal["Internal CPU Core"]
+    subgraph Core["Internal CPU Core"]
         PC["PC (4-bit)"]
         IR["IR (8-bit)"]
         REGA["Register_A (8-bit)"]
@@ -79,46 +79,43 @@ flowchart LR
         IDB["Internal Data Bus (8-bit)"]
     end
 
-    subgraph Bridge["Bus Bridges"]
+    subgraph BusBridge["Bus Bridges"]
         MAR["MAR (4-bit)"]
         MBR["MBR (8-bit)"]
     end
 
-    subgraph External["External Memory Interface"]
+    subgraph ExtMem["External Memory Interface"]
         EAB["External Address Bus (4-bit)"]
         EDB["External Data Bus (8-bit)"]
         RAM["RAM (16 x 8-bit)"]
     end
 
-    subgraph Control["Control Plane"]
+    subgraph Ctrl["Control Plane"]
         SC["Step_Counter (0-5)"]
-        CU["Control Unit (Hardwired)"]
+        CU["Control Unit (Hardwired C0-C15)"]
     end
 
-    PC -->|"4-bit Addr"| IAB
-    IR -->|"IR[3:0] Operand"| IAB
-    IAB --> MAR
-    MAR --> EAB
+    PC -->|"4-bit Addr (C0, C1)"| IAB
+    IR -->|"4-bit Operand (C8)"| IAB
+    IAB -->|"C9"| MAR
+    MAR -->|"C10"| EAB
     EAB --> RAM
 
-    IDB <--> MBR
-    MBR <--> EDB
-    EDB <--> RAM
+    IDB <-->|"C4, C5"| MBR
+    MBR <-->|"C4, C6"| EDB
+    EDB <-->|"C2, C3"| RAM
 
-    IDB --> IR
-    IDB --> REGA
-    IDB --> REGB
+    IDB -->|"C7"| IR
+    IDB -->|"C12"| REGA
+    IDB -->|"C13"| REGB
     REGA --> ALU
     REGB --> ALU
-    ALU -->|"Sum"| IDB
-    IDB --> OUTR
-    OUTR --> IDB
+    ALU -->|"8-bit Sum (C11)"| IDB
+    IDB -->|"C15"| OUTR
+    OUTR -->|"C14"| IDB
 
-    IR -->|"IR[7:4] Opcode"| CU
-    SC -->|"SC[2:0] Step"| CU
-    CU -->|"C0..C15"| Internal
-    CU -->|"C0..C15"| Bridge
-    CU -->|"C0..C15"| External
+    IR -->|"4-bit Opcode"| CU
+    SC -->|"3-bit Step (T0-T5)"| CU
 ```
 
 ---
