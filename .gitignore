@@ -1,0 +1,14 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logisim & temporary backups
+*.bak
+*.circ~
+*.tmp
+*.log
+
+# IDE / Editor directories
+.vscode/
+.idea/
