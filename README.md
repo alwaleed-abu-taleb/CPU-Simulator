@@ -14,13 +14,14 @@ A custom-built, gate-level **8-bit CPU** featuring a hardwired Control Unit, dua
 <p align="center">
   <em>Top-level CPU circuit during simulation: <code>Register_A = 150</code>, <code>Register_B = 5</code>, <code>Output Register = 155</code>, and <code>Step_Counter = 3</code>.</em>
   <br />
-  <a href="assets/CPU_99.mp4">Watch Simulation Demo (CPU_99.mp4)</a>
+  <a href="#simulation-demo">Watch Live Simulation Demo</a> · <a href="https://raw.githubusercontent.com/alwaleed-abu-taleb/CPU-Simulator/main/assets/CPU_99.mp4">Download Full Video (MP4)</a>
 </p>
 
 ---
 
 ## Table of Contents
 
+- [Simulation Demo](#simulation-demo)
 - [Key Features & Specifications](#key-features--specifications)
 - [System Architecture](#system-architecture)
 - [Subcircuits Overview](#subcircuits-overview-circuitcpu_tcirc)
@@ -31,6 +32,18 @@ A custom-built, gate-level **8-bit CPU** featuring a hardwired Control Unit, dua
 - [Project Structure](#project-structure)
 - [Getting Started (How to Run)](#getting-started-how-to-run)
 - [Author](#author)
+
+---
+
+## Simulation Demo
+
+<p align="center">
+  <img src="assets/cpu_demo.gif" alt="8-Bit CPU Live Simulation Demo" width="100%" />
+</p>
+
+<p align="center">
+  <em>Live execution of the accumulator loop in Logisim-evolution. (<a href="https://raw.githubusercontent.com/alwaleed-abu-taleb/CPU-Simulator/main/assets/CPU_99.mp4">Download full-resolution MP4</a>)</em>
+</p>
 
 ---
 
@@ -245,6 +258,7 @@ CPU-Simulator/
 ├── assets/
 │   ├── CPU_99.mp4             # Simulation demo video
 │   ├── control_signals.jpg    # Reference control signals table
+│   ├── cpu_demo.gif           # Inline animated simulation demo
 │   ├── cpu_schematic.png      # Top-level CPU schematic screenshot
 │   └── micro_ops.jpg          # Summary of micro-operations slide
 ├── circuit/
